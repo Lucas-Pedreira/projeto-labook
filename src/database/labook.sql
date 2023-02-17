@@ -18,7 +18,7 @@ VALUES
 CREATE TABLE posts (
     id TEXT PRIMARY KEY UNIQUE NOT NULL,
     creator_id TEXT NOT NULL,
-    name TEXT NOT NULL,
+    content TEXT NOT NULL,
     likes INTEGER DEFAULT(0) NOT NULL,
     dislikes INTEGER DEFAULT(0) NOT NULL,
     created_at TEXT DEFAULT (DATETIME()) NOT NULL,
@@ -28,13 +28,13 @@ CREATE TABLE posts (
         ON UPDATE CASCADE
 );
 
-INSERT INTO posts (id, creator_id, name)
+INSERT INTO posts (id, creator_id, content)
 VALUES
     ("p001", "u001", "Bom dia"),
     ("p002", "u001", "De hoje tá pago"),
     ("p003", "u002", "Boa tarde gente");
 
-DROP TABLE posts;
+
 
 CREATE TABLE likes_dislikes (
     user_id TEXT NOT NULL,
@@ -60,3 +60,9 @@ VALUES
 
 
 SELECT * FROM posts;
+DROP TABLE likes_dislikes;
+
+UPDATE posts
+SET dislikes = 1
+WHERE id = "p003"
+
