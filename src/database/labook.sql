@@ -59,7 +59,7 @@ VALUES
     ("u003", "p003", "0");
 
 
-SELECT * FROM posts;
+SELECT * FROM users;
 DROP TABLE likes_dislikes;
 
 UPDATE posts
