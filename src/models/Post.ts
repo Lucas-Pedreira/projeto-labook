@@ -7,7 +7,7 @@ export class Post {
         private likes: number,
         private dislikes: number,
         private createdAt: string,
-        private updateAt: string,
+        private updatedAt: string,
         private creatorId: string,
         private creatorName: string
     ) {}
@@ -33,6 +33,22 @@ export class Post {
         this.likes = value
     }
 
+    public addLike(){
+        this.likes += 1
+    }
+
+    public removeLike(){
+        this.likes -= 1
+    }
+
+    public addDislike(){
+        this.dislikes += 1
+    }
+
+    public removeDislike(){
+        this.dislikes -= 1
+    }
+
     public getDislikes(): number {
         return this.dislikes
     }
@@ -48,10 +64,10 @@ export class Post {
     }
     
     public getUpdateAt(): string {
-        return this.updateAt
+        return this.updatedAt
     }
     public setUpdateAt(value: string): void {
-        this.updateAt = value
+        this.updatedAt = value
     }
 
     public toDBModel(): PostDB {
@@ -62,7 +78,7 @@ export class Post {
             likes: this.likes,
             dislikes: this.dislikes,
             created_at: this.createdAt,
-            update_at: this.updateAt
+            updated_at: this.updatedAt
         }
     }
 
@@ -73,7 +89,7 @@ export class Post {
             likes: this.likes,
             dislikes: this.dislikes,
             createdAt: this.createdAt,
-            updateAt: this.updateAt,
+            updatedAt: this.updatedAt,
             creator: {
                 id: this.creatorId,
                 name: this.creatorName,
