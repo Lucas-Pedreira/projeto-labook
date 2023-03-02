@@ -1,4 +1,4 @@
--- Active: 1674824210103@@127.0.0.1@3306
+-- Active: 1677590735275@@127.0.0.1@3306
 
 CREATE TABLE users (
     id TEXT PRIMARY KEY UNIQUE NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE posts (
     likes INTEGER DEFAULT(0) NOT NULL,
     dislikes INTEGER DEFAULT(0) NOT NULL,
     created_at TEXT DEFAULT (DATETIME()) NOT NULL,
-    update_at TEXT DEFAULT (DATETIME()) NOT NULL,
+    updated_at TEXT DEFAULT (DATETIME()) NOT NULL,
     FOREIGN KEY (creator_id) REFERENCES users (id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
@@ -59,10 +59,24 @@ VALUES
     ("u003", "p003", "0");
 
 
-SELECT * FROM posts;
-DROP TABLE likes_dislikes;
+SELECT * FROM users;
+
+
+DROP TABLE posts;
 
 UPDATE posts
 SET dislikes = 1
-WHERE id = "p003"
+WHERE id = "p003";
 
+SELECT
+    posts.id,
+    posts.creator_id,
+    posts.content,
+    posts.likes,
+    posts.dislikes,
+    posts.created_at,
+    posts.updated_at,
+    users.name AS creator_name
+FROM posts
+JOIN users
+ON posts.creator_id = users.id;
